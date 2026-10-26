@@ -16,4 +16,4 @@ jobs:
           role-to-assume: 'arn:aws:iam::105565643547:role/OIDC-TEST
 
       # プライベートな S3 バケットを読み取ってみる
-      - run: aws s3://weblease/cfn/v1/vpc-sub.yaml
+      - run: aws s3://weblease/cfn/v1/vpc-sub.yaml'
