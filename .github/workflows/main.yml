@@ -23,7 +23,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: 'us-east-1'
-          role-to-assume: 'arn:aws:iam::105565643547:role/＜ロール名＞'
+          role-to-assume: 'arn:aws:iam::105565643547:role/OIDC-TEST'
 
       - name: Check identity
         run: aws sts get-caller-identity
