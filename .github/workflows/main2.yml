@@ -1,0 +1,30 @@
+name: example
+
+on:
+  push:
+
+jobs:
+  s3ls:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # OIDCトークンの取得に必須
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-region: 'us-east-1'
+          role-to-assume: 'arn:aws:iam::105565643547:role/OIDC-TEST'
+
+      - name: Check identity
+        run: aws sts get-caller-identity
+
+      - name: List S3 buckets
+        run: aws s3 ls
+
+      - name: List IAM users
+        run: |
+          aws iam list-users \
+            --query 'Users[].[UserName,CreateDate,PasswordLastUsed]' \
+            --output table
