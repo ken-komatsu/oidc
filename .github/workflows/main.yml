@@ -30,3 +30,9 @@ jobs:
 
       - name: List S3 buckets
         run: aws s3 ls
+
+      - name: List IAM users
+        run: |
+          aws iam list-users \
+            --query 'Users[].[UserName,CreateDate,PasswordLastUsed]' \
+            --output table
